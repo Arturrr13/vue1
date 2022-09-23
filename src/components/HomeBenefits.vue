@@ -1,7 +1,7 @@
 <template>
-    <section class="home-benefits">
+    <section class="home-benefits" v-if="sliderData !== null">
         <div class="section__wrapper">
-            <h1>Benefits <h2>For Chit Participants</h2> </h1>
+            <h1>Benefits <h2>For Chit Participants</h2></h1>
             <Carousel :settings="settings" style="max-width: 860px" :breakpoints="breakpoints" :wrap-around="true">
                 <slide v-for="(item, index) in sliderData" :key="index">
                     <div class="carousel__style">
@@ -20,22 +20,22 @@
             </Carousel>
         </div>
         <div class="img__wrapper">
-            <img src="../assets/image/UMF-LogosBig.png" alt="">
-            <img src="../assets/image/3.png" alt="">
+            <img v-lazyload :data-src="require(`../assets/image/UMF-LogosBig.png`)" alt="Logos">
+            <img v-lazyload :data-src="require(`../assets/image/3.png`)" alt="image">
         </div>
     </section>
 </template>
 
 <script>
-
 import 'vue3-carousel/dist/carousel.css';
 import { Carousel, Slide, Navigation } from 'vue3-carousel';
 import axios from 'axios';
+import lazyload from '@/assets/directives/lazyload'
 
 export default {
     data() {
         return {
-            sliderData: [],
+            sliderData: null,
             settings: {
                 itemsToShow: 1,
                 itemsToScroll: 1,
@@ -50,6 +50,7 @@ export default {
         }
     },
     name: 'HomeBenefits',
+    directives:{lazyload},
     components: {
     Carousel,
     Slide,
@@ -85,6 +86,7 @@ export default {
                 .icon{
                     width: 100%;
                     max-width: 100px;
+                    height: 120px;
                 }
                 h3, span{
                     line-height: 124%;

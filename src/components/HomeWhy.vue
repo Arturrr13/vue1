@@ -11,11 +11,11 @@
                     Backed by Blockchain Technology, UmaChitFund integrates the Chit Events with Staking Protocols to maximize the benefits for the lenders while offering low/zero prime rates to the borrowers (or even making them eligible to yield interest (profit) on their borrowing while completely nullifying the prime rate).
                 </span>
 
-                <Carousel :settings="settings" :wrap-around="true" :breakpoints="breakpoints" style="max-width: 1200px">
+                <Carousel :settings="settings" :wrap-around="true" :breakpoints="breakpoints" :autoplay="3000" style="max-width: 1200px">
                     <slide v-for="index in 5" :key="index">
                         <div class="card">
                             <div class="svg-box">
-                                <img src="../assets/image/Group.svg" alt="">
+                                <img v-lazyload :data-src="require(`../assets/image/Group.svg`)" alt="">
                             </div>
                             <span>coming soon</span>
                             <p>No. of Chit Events completed</p>
@@ -28,11 +28,11 @@
 
             </div>
             <div class="clouds">
-                <img src="../assets/image/clouds/cloud-02.png" style="--i:2;" alt="">
-                <img src="../assets/image/clouds/cloud-01.png" style="--i:2.5;" alt="">
-                <img src="../assets/image/clouds/cloud-03.png" style="--i:3; height: 100%;" alt="">
-                <img src="../assets/image/clouds/cloud-04.png" style="--i:4; max-width: 1500px;" alt="">
-                <img src="../assets/image/clouds/cloud-02.png" style="--i:5;" alt="">
+                <img v-lazyload :data-src="require(`../assets/image/clouds/cloud-02.png`)" style="--i:2; max-height: 1000px" alt="">
+                <img v-lazyload :data-src="require(`../assets/image/clouds/cloud-01.png`)" style="--i:2.5; max-height: 1000px" alt="">
+                <img v-lazyload :data-src="require(`../assets/image/clouds/cloud-03.png`)" style="--i:3; height: 100%; max-height: 1000px" alt="">
+                <img v-lazyload :data-src="require(`../assets/image/clouds/cloud-04.png`)" style="--i:4; max-height: 1000px" alt="">
+                <img v-lazyload :data-src="require(`../assets/image/clouds/cloud-02.png`)" style="--i:5; max-height: 1000px" alt="">
             </div>
     </section>
 </template>
@@ -40,10 +40,11 @@
 <script>
 import 'vue3-carousel/dist/carousel.css'
 import { Carousel, Slide, Pagination } from 'vue3-carousel'
+import lazyload from '@/assets/directives/lazyload'
+
 export default {
     data() {
         return {
-            teamData: [],
             settings: {
                 itemsToScroll: 1,
                 itemsToShow: 1,
@@ -62,11 +63,12 @@ export default {
         }
     },
     name: 'HomeWhy',
+    directives:{lazyload},
     components: {
         Carousel,
         Slide,
         Pagination
-    },
+    }
 }
 </script>
 
@@ -103,6 +105,9 @@ export default {
                 top: 0;
                 animation: cloud calc(8s * var(--i)) linear infinite;
             }
+        }
+        h1{
+            align-items: center;
         }
         h2{
             font-weight: 400;
@@ -165,6 +170,9 @@ export default {
             width: 169px;
             height: 162px;
             margin-top: 62px;
+            img{
+                pointer-events: none;
+            }
         }
         span{
             font-weight: 700;

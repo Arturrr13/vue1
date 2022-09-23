@@ -15,6 +15,22 @@ html, body{
     overflow: hidden;
 }
 
+::-webkit-scrollbar {
+    width: 15px;
+    position: relative;
+}
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 10px #40745e; 
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #63AF8F; 
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3c6e59; 
+}
+
 ul {
     list-style: none;
 }
@@ -22,7 +38,13 @@ ul {
 img{
     width: 100%;
     object-fit: cover;
-    pointer-events: none;
+    opacity: 0;
+    transform: translateY(100px);
+}
+
+span, p{
+    opacity: 0;
+    transform: translateX(50px);
 }
 
 a{
@@ -32,13 +54,31 @@ a{
     }
 }
 
+h1{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 25px;
+    &::after{
+        content: '';
+        position: absolute;
+        width: 100px;
+        height: 2px;
+        bottom: -10px;
+        background: #63AF8F;
+    }
+}
+
 h1, h2{
+    position: relative;
     font-weight: 800;
     font-size: 82px;
     line-height: 95%;
     letter-spacing: 0.07em;
     text-transform: uppercase;
     color: #FFFFFF;
+    opacity: 0;
+    transform: rotateX(90deg);
 }
 
 h2{
@@ -48,6 +88,8 @@ h2{
     letter-spacing: -0.035em;
     text-transform: capitalize;
     color: #FFFFFF;
+    opacity: 0;
+    transform: rotateY(90deg);
 }
 
 @mixin flex($direc, $juc) {
@@ -55,6 +97,35 @@ h2{
     flex-direction: $direc;
     justify-content: $juc;
 }
+
+.carousel__next, .carousel__prev, .buttons__wrapper .next, .buttons__wrapper .pre{
+    transition: .5s;
+    &:hover{
+        background: #63AF8F;
+        cursor: pointer;
+        box-shadow: 0 0 15px #5F3791;
+        &::before{
+            border-top: solid #000000;
+            border-left: solid #000000;
+        }
+    }
+}
+
+section, footer .footer__content__wrapper{
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.element-show {
+    opacity: 1;
+    transition: all 1.5s;
+    transform: translateY(0);
+    transform: translateX(0);
+    transform: rotateX(0);
+    transform: rotateY(0);
+  }
+
+//=====================================BUTTON================================================//
 
 @mixin btnAnim($afBf, $time, $bkg) {
     background: $bkg;
@@ -203,23 +274,7 @@ button[type=submit]{
     100% {bottom: -4px; left: -4px;}
 }
 
-.carousel__next, .carousel__prev, .buttons__wrapper .next, .buttons__wrapper .pre{
-    transition: .5s;
-    &:hover{
-        background: #63AF8F;
-        cursor: pointer;
-        box-shadow: 0 0 15px #5F3791;
-        &::before{
-            border-top: solid #000000;
-            border-left: solid #000000;
-        }
-    }
-}
-
-section, footer .footer__content__wrapper{
-    max-width: 1400px;
-    margin: 0 auto;
-}
+//=====================================Revolutionizing================================================//
 
 .home-revolutionizing{
     @include flex(row, space-between);
@@ -227,6 +282,9 @@ section, footer .footer__content__wrapper{
     .text-box{
         @include flex(column, top);
         max-width: 706px;
+        h1::after{
+            display: none;
+        }
         h2{
             font-weight: 400;
         }
@@ -255,6 +313,8 @@ section, footer .footer__content__wrapper{
     }
 }
 
+//=====================================PRESALE================================================//
+
 .home-presale{
     padding-top: 100px;
     @include flex(row, flex-end);
@@ -266,6 +326,9 @@ section, footer .footer__content__wrapper{
         text-align: end;
         position: relative;
         z-index: 5;
+        h1{
+            align-items: flex-end;
+        }
         span{
             font-weight: 400;
             font-size: 18px;
@@ -292,6 +355,9 @@ footer{
     padding: 57px 0 38px 0;
     position: relative;
     z-index: 1;
+    h1::after{
+        display: none;
+    }
     .left-wrapper{
         max-width: 506px;
         img{

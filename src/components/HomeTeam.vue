@@ -1,5 +1,5 @@
 <template>
-    <section class="home-team section__wrapper">
+    <section class="home-team section__wrapper" v-if="teamData !== null" v-animation>
         <h1>Our team</h1>
         <Carousel :settings="settings" :wrap-around="true" :mouseDrag="false" :breakpoints="breakpoints" style="max-width: 1200px">
             <slide v-for="(item, index) in teamData" :key="index" class="teammate">
@@ -28,11 +28,12 @@
 import axios from 'axios'
 import 'vue3-carousel/dist/carousel.css'
 import { Carousel, Slide, Navigation } from 'vue3-carousel'
+import animation from '../assets/directives/scrollAnimation'
 
 export default {
     data() {
         return {
-            teamData: [],
+            teamData: null,
             settings: {
                 itemsToScroll: 1,
                 itemsToShow: 1,
@@ -56,6 +57,7 @@ export default {
     Slide,
     Navigation,
     },
+    directives:{animation},
     created() {
         axios
         .get('data/ourteam.json')
@@ -70,7 +72,7 @@ export default {
 
     .home-team{
         h1{
-            text-align: center;
+            align-items:center
         }
 
         .carousel{

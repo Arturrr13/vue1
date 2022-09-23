@@ -1,4 +1,4 @@
-# vue1
+# umf
 
 ## Project setup
 ```

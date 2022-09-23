@@ -22,6 +22,11 @@ const routes = [
     component: () => import('../views/MyFAQ.vue')
   },
   {
+    path: '/news',
+    name: 'news',
+    component: () => import('../views/MyNews.vue')
+  },
+  {
     path: '/privacy-policy',
     name: 'PrivacyPolicy',
     component: () => import('../views/PrivacyPolicy.vue')
@@ -45,7 +50,11 @@ const routes = [
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes
+  routes,
+  scrollBehavior() {
+    return { top: 0 }
+  },
+  base:'/vue1/'
 })
 
 export default router

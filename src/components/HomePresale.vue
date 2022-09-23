@@ -7,19 +7,22 @@
             <span>
                 UmaChitFund is a blockchain-based Chit Industry built on Defi to innovate & reform the ways of the Decentralized Monetary System.
             </span>
-            <router-link title="Go to presale" rel="nofollow" to="/presale" class="button btn__style" id="click">
+            <router-link title="Go to presale" rel="nofollow" to="/presale" class="button btn__style element__animation--translateX" id="click">
                 Join Presale whitelist
                 <i v-for="index in 6" :key="index" :class="`circle--${index}`"></i>
             </router-link>
         </div> 
         <div class="img">
-            <img src="../assets/image/2.png" alt="">
+            <img v-lazyload :data-src="require(`../assets/image/2.png`)" alt="">
         </div>  
     </section>
 </template>
 
 <script>
+import lazyload from '@/assets/directives/lazyload'
+
 export default {
-    name: 'HomePresale'
+    name: 'HomePresale',
+    directives:{lazyload}
 }
 </script>

@@ -9,7 +9,7 @@
                 </span>
             </div>
             <div class="img img__blur">
-                <img src="../assets/image/4.png" alt="">
+                <img v-lazyload :data-src="require(`../assets/image/4.png`)" alt="image">
             </div>
         </div>
         <div class="about-us">
@@ -21,7 +21,7 @@
                 </span>
             </div>
             <div class="img img__blur--left">
-                <img src="../assets/image/7.png" alt="">
+                <img v-lazyload :data-src="require(`../assets/image/7.png`)" alt="image">
             </div>
         </div>
         <div class="what-makes-us">
@@ -33,15 +33,18 @@
                 </span>
             </div>
             <div class="img img__blur">
-                <img src="../assets/image/5.png" alt="">
+                <img v-lazyload :data-src="require(`../assets/image/5.png`)" alt="image">
             </div>
         </div>
     </section>
 </template>
 
 <script>
+import lazyload from '@/assets/directives/lazyload'
+
 export default {
-    name: 'AboutContent'
+    name: 'AboutContent',
+    directives:{lazyload}
 }
 </script>
 

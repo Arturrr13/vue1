@@ -1,10 +1,12 @@
 <template>
-    <section class="404">
-        <h1>404 <h2>this page is not found</h2></h1>
-        <div class="rain">
-            <span v-for="index in 50" :key="index=Math.random() * (55 - 5) + 5" :style="`--i:${index}`"></span>
+    <section class="errPage">
+        <div class="Ted">
+            <h1>404 <h2>this page is not found</h2></h1>
+            <div class="rain">
+                <span v-for="index in 50" :key="index=Math.random() * (55 - 5) + 5" :style="`--i:${index/2}`"></span>
+            </div>
+            <img src="../assets/image/404.png" alt="">
         </div>
-        <img src="../assets/image/404.png" alt="">
     </section>
 </template>
 
@@ -15,6 +17,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    .errPage{
+        display: flex;
+        flex-direction: row;
+        align-items: center
+    }
+
     h1{
         display: flex;
         flex-direction: row;
@@ -22,8 +30,13 @@ export default {
         font-size: 120px;
         animation: ErrAnimation 6s infinite;
         text-shadow: 0 0 25px #5F3791;
+        &::after{
+            display: none;
+            margin-bottom: 0;
+        }
         h2{
             color: #63AF8F;
+            margin-bottom: 15px;
         }
     }
 
@@ -38,7 +51,7 @@ export default {
         span{
             position: relative;
             width: 10px;
-            height: 10px;
+            height: 15px;
             background: rgba(136, 145, 213, 0.57);
             margin: 0 2px;
             border-radius: 50%;
@@ -62,19 +75,25 @@ export default {
        100%{transform: translateY(800px) scale(0)} 
     }
 
+    @media  screen and (max-width:1470px){
+        .errPage{
+            display: block;
+        }
+    }
+
     @media  screen and (max-width:1120px){
     h1{
         flex-direction: column;
         align-items: center;
         gap: 15px;
-        h2{
-            line-height: 50px;
-        }
     }
 
     @media  screen and (max-width:620px){
-    h1 h2{
+        h1 h2{
             font-size: 30px;
+        }
+        h2{
+            line-height: 50px;
         }
     }
 }

@@ -2,19 +2,19 @@
     <section>
         <div class="overlay__blur" ref="blur" @click="displayBlock"></div>
         <header class="header" ref="header">
-            <div class="navigation" ref="navigation">
+            <div class="navigation" ref="nav">
                 <div class="logo">
-                        <router-link to="/" title="UMF" rel="nofollow" @click="scrollTop" style="height: 100%; position: absolute;">
+                        <router-link to="/" title="UMF" rel="nofollow" style="height: 100%; position: absolute;">
                             <img src="../assets/image/UMF-Logos.png" alt="">
                         </router-link>
                 </div>
                 <nav>
                     <ul>
                         <li>
-                            <router-link rel="nofollow" to="/" @click="scrollTop">HOME</router-link>
+                            <router-link rel="nofollow" to="/">HOME</router-link>
                         </li>
                         <li>
-                            <router-link rel="nofollow" to="/about" @click="scrollTop">ABOUT US</router-link>
+                            <router-link rel="nofollow" to="/about">ABOUT US</router-link>
                         </li>
                         <li class="community">
                             <a rel="nofollow" class="arrow">COMMUNITY</a>
@@ -69,11 +69,11 @@
                             </div>
                         </li>
                         <li>
-                            <router-link rel="nofollow" to="/FAQ" @click="scrollTop">FAQ</router-link>
+                            <router-link rel="nofollow" to="/FAQ">FAQ</router-link>
                         </li>
                     </ul>
                 </nav>
-                <router-link title="Go to presale" rel="nofollow" to="/presale" id="click" class="button btn__style" @click="scrollTop">
+                <router-link title="Go to presale" rel="nofollow" to="/presale" id="click" class="button btn__style">
                         Presale
                         <svg width="32" height="20" viewBox="0 0 32 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M30.8839 10.8839C31.372 10.3957 31.372 9.60427 30.8839 9.11612L22.9289 1.16117C22.4408 0.67301 21.6493 0.67301 21.1612 1.16117C20.673 1.64932 20.673 2.44078 21.1612 2.92893L28.2322 10L21.1612 17.0711C20.673 17.5592 20.673 18.3507 21.1612 18.8388C21.6493 19.327 22.4408 19.327 22.9289 18.8388L30.8839 10.8839ZM0 11.25H30V8.75H0V11.25Z" fill="#63AF8F"/>
@@ -163,12 +163,25 @@ export default {
     name: 'SiteHeader',
     created () {
         window.addEventListener('scroll', this.handleScroll)
+        window.addEventListener('resize', () => {
+            if(document.querySelector('.burger__nav').classList.length === 2){
+                document.querySelector('.burger__nav').classList.toggle('active') 
+                this.closeBurger()
+            }
+        })
     },
     methods: {
-        toggleActive() {
+        closeBurger(){
+            this.$refs.nav.style.display = 'flex'
+            this.$refs.header.style.justifyContent = 'space-between'
+            this.$refs.header.classList.add('scroll')
+            document.body.style.overflow = ''
+            this.$refs.blur.style.display = 'none'
+        },
+        toggleActive(){
             document.querySelector('.burger__nav').classList.toggle('active') 
             if(document.querySelector('.burger__nav').className === 'burger__nav active'){
-                this.$refs.navigation.style.display = 'none'
+                this.$refs.nav.style.display = 'none'
                 this.$refs.header.style.justifyContent = 'flex-end'
                 this.$refs.header.classList.remove('scroll')
                 document.body.style.overflow = 'hidden'
@@ -176,27 +189,15 @@ export default {
                 this.$refs.blur.style.display = 'block'
                 this.$refs.blur.style.height = `${document.querySelector('#app').clientHeight}px`
             } else {
-                this.$refs.navigation.style.display = 'flex'
-                this.$refs.header.style.justifyContent = 'space-between'
-                this.$refs.header.classList.add('scroll')
-                document.body.style.overflow = ''
-                this.$refs.blur.style.display = 'none'
+                this.closeBurger()
             }
         },
-        displayBlock() {
+        displayBlock(){
             document.querySelector('.burger__nav').classList.toggle('active') 
-            this.$refs.navigation.style.display = 'flex'
-            this.$refs.header.style.justifyContent = 'space-between'
-            this.$refs.header.classList.add('scroll')
-            this.$refs.blur.style.display = 'none'
-            document.body.style.overflow = ''
-            this.scrollTop()
+            this.closeBurger()
         },
-        handleScroll () {
+        handleScroll(){
             window.scrollY > 64 ? document.querySelector('.header').classList.add('scroll') : document.querySelector('.header').classList.remove('scroll')
-        },
-        scrollTop(){
-            window.scrollTo(0, 0)
         }
     },
 }

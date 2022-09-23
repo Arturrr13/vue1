@@ -13,7 +13,7 @@
                 <svg>
                     <circle cx="420" cy="420" r="420"></circle>
                 </svg>
-                <div v-for="(circle, index) in circularData" :key="index" class="circle__content" :class="{active: el === index}" :style="`--num:${index*12.5};`" @click="lol(index)">
+                <div v-for="(circle, index) in circularData" :key="index" class="circle__content" :class="{active: el === index}" :style="`--num:${index*12.5};`">
                     <span :class="{active: el === index}">{{ circle.title }}</span>
                 </div>
             </div>
@@ -70,13 +70,6 @@ export default {
             this.rotate = rotate
             const rotate_part = this.rotate / 45
             this.el = this.rotate === -360 ? 0 : this.rotate > 0 ? 8 - rotate_part : -rotate_part
-        },
-        lol(ind){
-            console.log(ind)
-            let rotate = ind * 45
-            this.$refs.wrapper.style.transform = `rotate(${rotate}deg)`
-            this.rotate = rotate
-            this.el = ind
         }
     },
 }
@@ -189,6 +182,7 @@ export default {
             display: flex;
             align-items: center;
             justify-content: center;
+            opacity: 1;
             &.active{
                 animation: spanAnimation .5s linear .5s both;
                 transform: rotate(90deg);
@@ -234,7 +228,7 @@ export default {
         left: 38px;
     }
     .next{
-        margin-left: 48px;
+        margin-left: 40px;
         &::before{
             transform: rotate(135deg);
             right: 38px;

@@ -19,7 +19,7 @@
     }
 }
 
-@media  screen and (max-width:1370px){
+@media  screen and (max-width:1420px){
     .blur__on__responsive{
         width: 100%;
         height: 100%;
@@ -96,7 +96,7 @@
         top: 265px;
         right: 25px;
     }
-    .404 h1{
+    .errPage h1{
         flex-direction: column;
     }
 }
@@ -117,8 +117,11 @@
     }
     .home-roadmap .components__wrapper{
         .circular__list{
-            margin: 55px 0 10px 0;
+            margin: 35px 0 10px 0;
             height: 430px;
+            h3{
+                margin-bottom: 10px;
+            }
         }
     }
     .home-roadmap .position__wrapper .wrapper__circle{
@@ -176,7 +179,7 @@
         right: -140px;
     }
     .home-roadmap .components__wrapper{
-        max-width: 200px;
+        width: 185px;
         .circular__list{
             height: 430px;
             li{
@@ -187,18 +190,18 @@
         }
         .buttons__wrapper{
             .pre, .next{
-                width: 80px;
-                height: 80px;
+                width: 70px;
+                height: 70px;
                 &::before{
                     width: 30px;
                     height: 30px;
                 }
             }
             .pre::before{
-                left: 30px;
+                left: 26px;
             }
             .next::before{
-                right: 30px;
+                right: 26px;
             }
         }
     }
@@ -241,6 +244,9 @@
         .input-wrapper{
             margin: 0;
         }
+        .Wrapper--email, .Wrapper--number, .Wrapper--twitterID, .Wrapper--telegramID{
+            width: 100%;
+        }
     }
 }
 
@@ -250,6 +256,7 @@
     }
     h2{
         font-size: 35px;
+        line-height: 37px;
     }
     .home-roadmap .position__wrapper .wrapper__circle{
         top: 235px;

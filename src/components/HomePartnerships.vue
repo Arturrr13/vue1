@@ -34,7 +34,7 @@ export default {
     .home-partnerships{
         padding: 107px 0 107px 0;
         h1{
-            text-align: end;
+            align-items: flex-end;
         }
     }
     .partnerships__wrapper{
@@ -59,6 +59,8 @@ export default {
             }
             img{
                 filter: grayscale(1);
+                opacity: 1;
+                transform: translateY(0);
             }
             &:hover img{
                 transition: all 1s ease;

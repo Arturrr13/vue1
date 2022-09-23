@@ -3,7 +3,7 @@
         <div class="footer__content__wrapper">
             <div class="left-wrapper">
                 <h1>join our community</h1>
-                <img src="../assets/image/UMF-Logos.png" alt="">
+                <img v-lazyload :data-src="require(`../assets/image/UMF-Logos.png`)" alt="">
             </div>
             <div class="right-wrapper">
                 <span>Sign up for our newsletters</span>
@@ -15,9 +15,9 @@
                 <div class="footer-nav">
                     <div class="nav-wrapper">
                         <p>Learn</p>
-                        <router-link rel="nofollow" to="/about" @click="scrollTop">About Us</router-link>
-                        <router-link rel="nofollow" to="/presale" @click="scrollTop">Buy UCF</router-link>
-                        <router-link rel="nofollow" to="/FAQ" @click="scrollTop">FAQ</router-link>
+                        <router-link rel="nofollow" to="/about">About Us</router-link>
+                        <router-link rel="nofollow" to="/presale">Buy UCF</router-link>
+                        <router-link rel="nofollow" to="/FAQ">FAQ</router-link>
                     </div>
 
                     <div class="nav-wrapper">
@@ -29,9 +29,9 @@
 
                     <div class="nav-wrapper">
                         <p>Other</p>
-                        <router-link rel="nofollow" to="/privacy-policy" @click="scrollTop">Privacy Policy</router-link>
-                        <router-link rel="nofollow" to="/cookies-policy" @click="scrollTop">Cookie Policy</router-link>
-                        <router-link rel="nofollow" to="/disclaimer" @click="scrollTop">Disclaimer</router-link>
+                        <router-link rel="nofollow" to="/privacy-policy">Privacy Policy</router-link>
+                        <router-link rel="nofollow" to="/cookies-policy">Cookie Policy</router-link>
+                        <router-link rel="nofollow" to="/disclaimer">Disclaimer</router-link>
                     </div>
                 </div>
 
@@ -65,6 +65,8 @@
 </template>
 
 <script>
+import lazyload from '@/assets/directives/lazyload'
+
 export default {
     data(){
         return{
@@ -74,6 +76,7 @@ export default {
         }
     },
     name: 'SiteFooter',
+    directives:{lazyload},
     methods: {
         checkingEmail(){
             let email = this.$refs.email.value
@@ -92,9 +95,6 @@ export default {
             })
                 this.message = 'Incorrect E-mail'
             }
-        },
-        scrollTop(){
-            window.scrollTo(0, 0)
         }
     }
 }

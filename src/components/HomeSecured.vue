@@ -3,24 +3,23 @@
         <h1>Audited <h2>& Secured by</h2></h1>
         <div class="wrapper__secured">
             <div class="TechReat">
-                <img src="../assets/image/secured/TechReat.png" alt="">
+                <img v-lazyload :data-src="require(`../assets/image/secured/TechReat.png`)" alt="TechReat">
                 <p>TechReat</p>
             </div>
             <div class="CoinTool">
-                <img src="../assets/image/secured/CoinTool.png" alt="">
+                <img v-lazyload :data-src="require(`../assets/image/secured/CoinTool.png`)" alt="CoinTool">
                 <p>CoinTool</p>
             </div>
         </div>
-            <!-- <template>
-              <img v-lazy="assets/image/secured/CoinTool" />
-            </template>
-            <img v-lazy="{ src: '/assets/image/secured/CoinTool.png' }"/> -->
     </section>
 </template>
 
 <script>
+import lazyload from '@/assets/directives/lazyload'
+
 export default {
-    name: 'HomeSecured'
+    name: 'HomeSecured',
+    directives:{lazyload}
 }
 </script>
 

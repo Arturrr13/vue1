@@ -116,6 +116,11 @@ export default {
         color: #FFFFFF;
         margin-top: 15px;
     }
+    img, p{
+        opacity: 1;
+        transform: translateY(0);
+        transform: translateX(0);
+    }
     .faq__wrapper{
         max-width: 748px;
         .components{
@@ -136,6 +141,7 @@ export default {
                 padding: 25px;
             }
             img{
+                width: 200px;
                 filter: grayscale(1);
                 transition: all .5s ease;
             }
