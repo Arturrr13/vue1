@@ -22,6 +22,7 @@ import HomeRoadmap from '@/components/HomeRoadmap.vue'
 import HomeTeam from '@/components/HomeTeam.vue'
 import HomeSecured from '@/components/HomeSecured.vue'
 import HomePartnerships from '@/components/HomePartnerships.vue'
+import { useActive } from '@/use/NavigationActive'
 
 export default {
     name: 'MyHome',
@@ -34,6 +35,9 @@ export default {
         HomeTeam,
         HomeSecured,
         HomePartnerships
+    },
+    setup(){
+        return useActive('nav ul #faq', 'nav ul #about', '.navigation .click', 'nav ul #crypto', 'nav ul #home')
     }
 }
 </script>

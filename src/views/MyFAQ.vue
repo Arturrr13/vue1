@@ -4,10 +4,10 @@
             <h1>FAQ</h1>
             <h2>frequently asked question</h2>
             <div class="faq__wrapper">
-                <div v-for="(item,index) in FAQdata" :key="index">
+                <div v-for="(item,index) in $store.getters.getAllData" :key="item._id">
                     <div :class="`component--${index} components`">
                         <div class="text__wrapper">
-                            <h3>{{ item.title }}</h3>
+                            <h3>{{ item.text }}</h3>
                             <p>{{ item.info }}</p>
                         </div>
                         <img src="../assets/image/FAQ/close.svg" alt="" class="close" @click="openClose(index, 1)">
@@ -21,22 +21,20 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { useActive } from '@/use/NavigationActive'
 
 export default {
     data() {
         return {
-            FAQdata: [],
             lastComponents: 0
         }
     },
     name: 'MyFAQ',
-    created (){
-        axios
-        .get('data/FAQ.json')
-        .then(res => {
-            this.FAQdata = res.data
-        })
+    setup(){
+        return useActive('nav ul #home', 'nav ul #about', '.navigation .click', 'nav ul #crypto', 'nav ul #faq')
+    },
+    mounted(){
+        this.$store.dispatch("fetchData")
     },
     methods: {
         openClose(number, status){
@@ -54,8 +52,8 @@ export default {
                   { opacity: '0'},
                   { opacity: '1'}
                 ], {
-                    delay: 500,
-                    duration: 500,
+                    delay: 250,
+                    duration: 250,
                     fill: 'both'
                 })
             } else {

@@ -1,17 +1,16 @@
 <template>
-    <section class="home-benefits" v-if="sliderData !== null">
+    <section class="home-benefits" v-if="sliderData !== null" v-animation>
         <div class="section__wrapper">
             <h1>Benefits <h2>For Chit Participants</h2></h1>
             <Carousel :settings="settings" style="max-width: 860px" :breakpoints="breakpoints" :wrap-around="true">
-                <slide v-for="(item, index) in sliderData" :key="index">
+                <slide v-for="(item, index) in sliderData" :key="item._id">
                     <div class="carousel__style">
                         <div class="icon">
-                            <img :src="require(`@/assets/image/sliderIcon/${index}.svg`)" alt="">
+                            <img v-lazyload :data-src="require(`@/assets/image/sliderIcon/${index}.svg`)" alt="">
                         </div>
                         <h3>{{ item.title }}</h3>
                         <span>{{ item.info }}</span>
                     </div>
-                    
                 </slide>
 
                 <template #addons>
@@ -31,6 +30,7 @@ import 'vue3-carousel/dist/carousel.css';
 import { Carousel, Slide, Navigation } from 'vue3-carousel';
 import axios from 'axios';
 import lazyload from '@/assets/directives/lazyload'
+import animation from '../assets/directives/scrollAnimation'
 
 export default {
     data() {
@@ -50,15 +50,15 @@ export default {
         }
     },
     name: 'HomeBenefits',
-    directives:{lazyload},
+    directives:{lazyload, animation},
     components: {
     Carousel,
     Slide,
     Navigation,
     },
-    created () {
+    mounted () {
         axios
-        .get('data/slider.json')
+        .get('https://node-api-6d27.onrender.com/api/slider')
         .then(res => {
             this.sliderData = res.data
         })
@@ -75,18 +75,22 @@ export default {
         .carousel__slide{
             padding: 0 25px;
                 .carousel__style{
-                height: 500px;
-                background: #0F100F;
-                display: flex;
-                flex-direction: column;
-                justify-content: flex-start;
-                align-items: flex-end;
-                padding: 15px;
-                border-radius: 5%;
+                    height: 500px;
+                    background: #0F100F;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    align-items: flex-end;
+                    padding: 15px;
+                    border-radius: 5%;
                 .icon{
-                    width: 100%;
-                    max-width: 100px;
-                    height: 120px;
+                    display: flex;
+                    justify-content: flex-end;
+                    img{
+                        max-width: 100px;
+                        max-height: 115px;
+                        width: 100%;
+                    }
                 }
                 h3, span{
                     line-height: 124%;

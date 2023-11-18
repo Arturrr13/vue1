@@ -99,9 +99,6 @@
     .errPage h1{
         flex-direction: column;
     }
-}
-
-@media  screen and (max-width:900px){
     .burger__nav{
         display: block;
     }
@@ -115,9 +112,12 @@
     .burger__nav nav ul a svg{
         margin-left: 15px;
     }
+}
+
+@media  screen and (max-width:1000px){
     .home-roadmap .components__wrapper{
         .circular__list{
-            margin: 35px 0 10px 0;
+            margin: 35px 0;
             height: 430px;
             h3{
                 margin-bottom: 10px;
@@ -270,6 +270,12 @@
     }
     .home-revolutionizing, .home-presale{
         padding-top: 50px;
+    }
+}
+
+@media  screen and (max-width:500px){
+    .header .btn__wrapper .button {
+        display: none;
     }
 }
 

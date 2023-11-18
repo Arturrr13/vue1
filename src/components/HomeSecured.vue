@@ -43,5 +43,13 @@ export default {
             text-transform: capitalize;
             color: #FFFFFF;
         }
+        .CoinTool img{
+            height: 204px;
+            width: 230px;
+        }
+        .TechReat img{
+            height: 204px;
+            width: 204px;
+        }
     }
 </style>

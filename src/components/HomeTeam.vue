@@ -2,9 +2,9 @@
     <section class="home-team section__wrapper" v-if="teamData !== null" v-animation>
         <h1>Our team</h1>
         <Carousel :settings="settings" :wrap-around="true" :mouseDrag="false" :breakpoints="breakpoints" style="max-width: 1200px">
-            <slide v-for="(item, index) in teamData" :key="index" class="teammate">
-                <img :src="require(`@/assets/image/team/${index}.jpg`)" alt="">
-                <h3>{{ item.name }}</h3>
+            <slide v-for="(item, index) in teamData" :key="item._id" class="teammate">
+                <img v-lazyload :data-src="require(`@/assets/image/team/${index}.jpg`)" alt="">
+                <h2>{{ item.name }}</h2>
                 <a :href="`${item.wiki}`" :title="`${item.name}`" target="_blank" class="slideLink"></a>
                 <p>{{ item.position }}</p>
                 <div class="icon__wraper">
@@ -28,6 +28,7 @@
 import axios from 'axios'
 import 'vue3-carousel/dist/carousel.css'
 import { Carousel, Slide, Navigation } from 'vue3-carousel'
+import lazyload from '@/assets/directives/lazyload'
 import animation from '../assets/directives/scrollAnimation'
 
 export default {
@@ -57,10 +58,10 @@ export default {
     Slide,
     Navigation,
     },
-    directives:{animation},
+    directives:{lazyload, animation},
     created() {
         axios
-        .get('data/ourteam.json')
+        .get('https://node-api-6d27.onrender.com/api/ourteam')
         .then(res => {
             this.teamData = res.data
         })
@@ -96,7 +97,7 @@ export default {
         display: flex;
         flex-direction: column;
         align-items: center;
-        h3{
+        h2{
             font-weight: 500;
             font-size: 30px;
             letter-spacing: 0.01em;
@@ -118,7 +119,7 @@ export default {
         }
         span{
             font-size: 25px;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
     }
 

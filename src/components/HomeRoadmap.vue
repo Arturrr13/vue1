@@ -4,8 +4,8 @@
             <h1>Roadmap</h1>
             <div class="circular__list" v-html="currentCircleHTML" />
             <div class="buttons__wrapper">
-                <button class="pre" @click="switching(0)"></button>
-                <button class="next" @click="switching(1)"></button>
+                <button type="button" class="pre" @click="switching(0)"></button>
+                <button type="button" class="next" @click="switching(1)"></button>
             </div>
         </div>
         <div class="position__wrapper">
@@ -13,7 +13,7 @@
                 <svg>
                     <circle cx="420" cy="420" r="420"></circle>
                 </svg>
-                <div v-for="(circle, index) in circularData" :key="index" class="circle__content" :class="{active: el === index}" :style="`--num:${index*12.5};`">
+                <div v-for="(circle, index) in circularData" :key="circle._id" class="circle__content" :class="{active: el === index}" :style="`--num:${index*12.5};`">
                     <span :class="{active: el === index}">{{ circle.title }}</span>
                 </div>
             </div>
@@ -36,7 +36,7 @@ export default {
             return this.circularData[this.el]
         },
         currentCircleHTML () {
-            let html = `<h3>${this.currentCircle?.title}</h3>
+            let html = `<h2>${this.currentCircle?.title}</h2>
             <ul>`
             this.currentCircle?.list.forEach(element => {
                 html += `<li>${element}</li>`
@@ -46,9 +46,9 @@ export default {
         }
     },
     name: 'HomeRoadmap',
-     created () {
+    mounted () {
         axios
-        .get('data/circular.json')
+        .get('https://node-api-6d27.onrender.com/api/circular')
         .then(res => {
             this.circularData = res.data
         })
@@ -80,7 +80,7 @@ export default {
 .circular__list{
     margin: 260px 0 10px 0;
     height: 430px;
-    li, h3{
+    li, h2{
         position: relative;
         animation: listAnimation .5s linear both;
         font-weight: 300;
@@ -97,15 +97,15 @@ export default {
         list-style: inside;
         padding-left: 15px;
     }
-    h3{
+    h2{
         font-weight: 700;
         font-size: 36px;
         margin-bottom: 35px;
     }
 }
 @keyframes listAnimation {
-    0%  {opacity: 0; left: 50px;}
-    100% {opacity: 1; left: 0;}
+    0%  {opacity: 0; transform: translateX(50px);}
+    100% {opacity: 1; transform: translateX(0);}
 }
 </style>
 

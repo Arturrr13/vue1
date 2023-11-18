@@ -16,7 +16,7 @@ html, body{
 }
 
 ::-webkit-scrollbar {
-    width: 15px;
+    width: 10px;
     position: relative;
 }
 ::-webkit-scrollbar-track {
@@ -161,15 +161,15 @@ section, footer .footer__content__wrapper{
 }
 
 button[type=submit]{
-    transition: .5s;
+    transition: .3s;
     &:hover{
-        background: #63AF8F;
-        letter-spacing: 5px;
+        background: #000000;
+        box-shadow: inset 0 0 40px #63AF8F;
         cursor: pointer;
     }
 }
 
-#click{
+.click{
     position: relative;
     overflow: hidden;
     &::after{
@@ -199,10 +199,9 @@ button[type=submit]{
 
 .btn__style{
     position: relative;
-    transition: .5s;
+    transition: .2s;
     &:hover{
         cursor: pointer;
-        letter-spacing: .23rem;
         box-shadow: 0 0 10px #63AF8F;
         border: 1px solid #63AF8F;
         color: #f3f3f3;
@@ -256,6 +255,9 @@ button[type=submit]{
     &:hover .circle--6::before{
         @include btnAnim(btnAnimationBefore, 9s, #1a0967)
     }
+    &.active{
+        background: linear-gradient(25deg, rgba(99,175,143,.6) 14%, rgba(112,101,169,.6) 34%, rgba(95,55,145,.6) 53%, rgba(0,0,0,.6) 82%);
+    }
 }
 
 @keyframes btnAnimationBefore {
@@ -279,6 +281,7 @@ button[type=submit]{
 .home-revolutionizing{
     @include flex(row, space-between);
     padding-top: 100px;
+    position: relative;
     .text-box{
         @include flex(column, top);
         max-width: 706px;
@@ -296,7 +299,7 @@ button[type=submit]{
             color: #FFFFFF;
             margin-top: 40px;
         }
-        a{
+        button{
             margin-top: 15px;
         }
         .subtext{
@@ -305,8 +308,13 @@ button[type=submit]{
         }
     }
     .img{
-        width: 100%;
-        max-width: 710px;
+        img{
+            max-width: 710px;
+            max-height: 632px;
+            width: 100%;
+            position: absolute;
+            right: 0;
+        }
     }
     .img-presale{
         max-height: 425px;
@@ -316,11 +324,12 @@ button[type=submit]{
 //=====================================PRESALE================================================//
 
 .home-presale{
-    padding-top: 100px;
+    padding-top: 160px;
     @include flex(row, flex-end);
     position: relative;
     .text-box{
         @include flex(column, top);
+        width: 100%;
         max-width: 680px;
         align-items: flex-end;
         text-align: end;
@@ -343,7 +352,7 @@ button[type=submit]{
     }
     .img{
         position: absolute;
-        top: 140px;
+        top: 200px;
         left: 0;
     }
 }

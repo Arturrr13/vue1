@@ -1,20 +1,24 @@
 <template>
-    <section class="home-partnerships section__wrapper">
+    <div class="home-partnerships section__wrapper">
         <h1>partnerships <h2>& Press Releases</h2></h1>
         <div class="partnerships__wrapper">
-            <div class="partnership" v-for="(item, index) in partnershipsData" :key="index">
-                <img :src="require(`@/assets/image/partnerships/${index}.png`)" alt="" :style="`width: ${item.width}px`" class="lol">
-                <a :href="`${item.link}`" :title="`${item.title}`" target="_blank"></a>
+            <div class="animation__wrapper">
+                <div class="partnership" v-for="(item, index) in partnershipsData" :key="index">
+                    <img v-lazyload :data-src="require(`@/assets/image/partnerships/${index}.png`)" alt="" :style="`max-width: ${item.width}px, width: 100%`" class="lol">
+                    <a :href="`${item.link}`" :title="`${item.title}`" target="_blank"></a>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 </template>
 
 <script>
 import axios from 'axios';
+import lazyload from '@/assets/directives/lazyload'
 
 export default {
     name: 'HomePartnerships',
+    directives:{lazyload},
     data() {
         return {
             partnershipsData: [],
@@ -35,19 +39,24 @@ export default {
         padding: 107px 0 107px 0;
         h1{
             align-items: flex-end;
+            max-width: 1400px;
+            margin: 0 auto;
         }
     }
     .partnerships__wrapper{
-        position: relative;
-        display: flex;
-        flex-direction: row;
-        align-content: center;
-        justify-content: center;
-        gap: 80px;
         margin-top: 100px;
+        .animation__wrapper{
+            overflow: overlay;
+            width: 100vw;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 80px;
+            animation: partnerships 10s linear infinite;
+        }
         .partnership{
             position: relative;
-            animation: partnerships 10s linear infinite;
             a{
                 position: absolute;
                 width: 100%;
@@ -68,14 +77,14 @@ export default {
                 transform: scale(1.1);
             }
         }
-        &:hover .partnership{
+        &:hover .animation__wrapper{
             animation: stopAnimation 1.5s linear both;
         }
     }
 
     @keyframes partnerships {
-      0% {right: 70%;}
-      100% {right: -70%;}
+      0% {transform: translateX(100%);}
+      100% {transform: translateX(-100%);}
     }
 
     @keyframes imgFilter {
@@ -84,7 +93,7 @@ export default {
     }
 
     @keyframes stopAnimation {
-        0%   {right: 60%;}
-        100% {right: 0;}
+        0%   {transform: translateX(60%);}
+        100% {transform: translateX(0);}
     }
 </style>

@@ -2,7 +2,7 @@
     <section class="home-why">
             <div class="section__wrapper">
                 <h2>
-                Why
+                    Why
                 </h2>
                 <h1>
                     UMA.fi? 
@@ -10,7 +10,6 @@
                 <span>
                     Backed by Blockchain Technology, UmaChitFund integrates the Chit Events with Staking Protocols to maximize the benefits for the lenders while offering low/zero prime rates to the borrowers (or even making them eligible to yield interest (profit) on their borrowing while completely nullifying the prime rate).
                 </span>
-
                 <Carousel :settings="settings" :wrap-around="true" :breakpoints="breakpoints" :autoplay="3000" style="max-width: 1200px">
                     <slide v-for="index in 5" :key="index">
                         <div class="card">
@@ -63,7 +62,9 @@ export default {
         }
     },
     name: 'HomeWhy',
-    directives:{lazyload},
+    directives: {
+        lazyload
+    },
     components: {
         Carousel,
         Slide,
@@ -76,7 +77,7 @@ export default {
     .home-why{
         max-width: 100%;
         position: relative;
-        padding-top: 350px;
+        padding-top: 160px;
         .carousel__track {
             display: flex;
             margin: 0;
@@ -167,11 +168,11 @@ export default {
         flex-direction: column;
         align-items: center;
         .svg-box{
-            width: 169px;
-            height: 162px;
             margin-top: 62px;
             img{
                 pointer-events: none;
+                max-width: 170px;
+                max-height: 162px;
             }
         }
         span{

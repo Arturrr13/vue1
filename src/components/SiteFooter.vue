@@ -9,7 +9,7 @@
                 <span>Sign up for our newsletters</span>
                 <form action="#" method="post" @submit.prevent="checkingEmail">
                     <input type="text" placeholder="Enter your E-mail address" title="Enter your E-mail" ref="email">
-                    <button type="submit" title="Submit E-mail" id="click">Submit</button>
+                    <button type="submit" title="Submit E-mail" class="click">Submit</button>
                 </form>
                 <p ref="message" class="message">{{ message }}</p>
                 <div class="footer-nav">
@@ -22,9 +22,9 @@
 
                     <div class="nav-wrapper">
                         <p>Resources</p>
-                        <a>Media Kit</a>
-                        <a>Support</a>
-                        <a>Contact Us</a>
+                        <a href="href" rel="nofollow">Media Kit</a>
+                        <a href="href" rel="nofollow">Support</a>
+                        <a href="href" rel="nofollow">Contact Us</a>
                     </div>
 
                     <div class="nav-wrapper">
@@ -76,7 +76,9 @@ export default {
         }
     },
     name: 'SiteFooter',
-    directives:{lazyload},
+    directives: {
+        lazyload
+    },
     methods: {
         checkingEmail(){
             let email = this.$refs.email.value

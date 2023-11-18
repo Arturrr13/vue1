@@ -22,9 +22,9 @@ const routes = [
     component: () => import('../views/MyFAQ.vue')
   },
   {
-    path: '/news',
-    name: 'news',
-    component: () => import('../views/MyNews.vue')
+    path: '/crypto',
+    name: 'crypto',
+    component: () => import('../views/MyCrypto.vue')
   },
   {
     path: '/privacy-policy',
@@ -45,6 +45,16 @@ const routes = [
     path: '/:pathMatch(.*)*',
     name: 'pageNotFound',
     component: () => import('../views/MyErr.vue')
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('../views/LoginUser.vue')
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: () => import('../views/RegisterUser.vue')
   }
 ]
 
